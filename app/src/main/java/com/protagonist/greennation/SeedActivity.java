@@ -7,13 +7,23 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 
 import com.github.clans.fab.FloatingActionMenu;
+import com.protagonist.greennation.Adapter.ForestAdapter;
 import com.protagonist.greennation.Adapter.SeedAdapter;
 import com.protagonist.greennation.Model.Plant;
+import com.protagonist.greennation.Model.Seed;
+import com.protagonist.greennation.Task.Task_plantlists;
+import com.protagonist.greennation.Task.Task_seedlists;
+import com.protagonist.greennation.callbacks.Request_listseeds;
+import com.protagonist.greennation.helper.SessionManager;
+import com.protagonist.greennation.json.Endpoints;
+import com.protagonist.greennation.utils.Apputil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class SeedActivity extends AppCompatActivity {
-
+public class SeedActivity extends AppCompatActivity implements Request_listseeds {
     private final String plant_names[] = {
             "Donut",
             "Eclair",
@@ -21,7 +31,6 @@ public class SeedActivity extends AppCompatActivity {
             "Gingerbread",
 
     };
-
     private final String plant_images[] = {
             "http://api.learn2crack.com/android/images/donut.png",
             "http://api.learn2crack.com/android/images/eclair.png",
@@ -29,6 +38,7 @@ public class SeedActivity extends AppCompatActivity {
             "http://api.learn2crack.com/android/images/ginger.png",
 
     };
+    RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,13 +64,37 @@ public class SeedActivity extends AppCompatActivity {
             }
         });
         action.setVisibility(View.GONE);
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
-        ArrayList<Plant> androidVersions = prepareData();
-        SeedAdapter adapter = new SeedAdapter(SeedActivity.this, androidVersions);
+        ArrayList<Seed> seeds = new ArrayList<>();
+        SeedAdapter adapter = new SeedAdapter(SeedActivity.this, seeds);
         recyclerView.setAdapter(adapter);
+        api_user_plant();
+    }
+
+    public void api_user_plant() {
+        if (Apputil.checkInternetConnection()) {
+            SessionManager session = new SessionManager();
+
+            Endpoints.urlactionname = "list_plants_master";
+            //Facebook_hasura_detail facebook_hasuradetail = sessionManager.get_Facebooklogin_hasuradetail();
+
+
+            JSONObject params = new JSONObject();
+    /*        try {
+
+                params.put("hasura_user_id", session.get_hasura_userid());
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }*/
+            new Task_seedlists(this, params).execute();
+        } else {
+            //  Apputil.No_network_connection(AppTourActivity.this);
+        }
     }
 
     private ArrayList<Plant> prepareData() {
@@ -74,5 +108,13 @@ public class SeedActivity extends AppCompatActivity {
             android_version.add(androidVersion);
         }
         return android_version;
+    }
+
+    @Override
+    public void oncreate_seedlist(ArrayList<Seed> plants) {
+        if (plants != null) {
+            SeedAdapter adapter = new SeedAdapter(SeedActivity.this, plants);
+            recyclerView.setAdapter(adapter);
+        }
     }
 }

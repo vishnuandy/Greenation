@@ -56,11 +56,12 @@ public class SignupActivity extends AppCompatActivity implements Request_createp
             JSONObject params = new JSONObject();
             try {
                 params.put("username", username);
-                params.put("password", "jsmith123456");
+                params.put("password", "jsmith1234");
 
             } catch (JSONException e) {
                 e.printStackTrace();
             }
+            Log.e("api_create_user: ", params.toString());
             new Task_createprofile(this, params).execute();
         } else {
             //  Apputil.No_network_connection(AppTourActivity.this);
@@ -74,17 +75,20 @@ public class SignupActivity extends AppCompatActivity implements Request_createp
             Log.e("profile_is", "profile_is" + profile_is);
             try {
                 JSONObject object = new JSONObject(profile_is);
+/*
                 JSONObject object1 = new JSONObject(String.valueOf(object.getJSONArray("returning").get(0)));
-                Log.e("object1", "object1: " + object1);
-                Gson gson = new Gson();
-                Loggedinuser = gson.fromJson(object1.toString(), User.class);
-                sessionManager.create_Facebooklogin_hasuradetail(Loggedinuser.getUserid(),Loggedinuser.getHasura_id());
+*/
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Gson gson = new Gson();
+                Loggedinuser = gson.fromJson(object.toString(), User.class);
+                sessionManager.create_Facebooklogin_hasuradetail(Loggedinuser.getHasura_id(), Loggedinuser.getAuth_token());
+
+                Intent intent = new Intent(getApplicationContext(), MyForest.class);
                 startActivity(intent);
 
             } catch (JSONException e) {
                 e.printStackTrace();
+                Log.e("exception_error", e.getMessage());
             }
         }
     }

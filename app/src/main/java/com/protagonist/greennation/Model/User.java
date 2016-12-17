@@ -5,24 +5,23 @@ package com.protagonist.greennation.Model;
  */
 
 public class User {
-    int userid;
+    int hasura_id;
+    String auth_token;
 
-    public String getHasura_id() {
+    public int getHasura_id() {
         return hasura_id;
     }
 
-    public void setHasura_id(String hasura_id) {
+    public void setHasura_id(int hasura_id) {
         this.hasura_id = hasura_id;
     }
 
-    public int getUserid() {
-        return userid;
+    public String getAuth_token() {
+        return auth_token;
     }
 
-    public void setUserid(int userid) {
-        this.userid = userid;
+    public void setAuth_token(String auth_token) {
+        this.auth_token = auth_token;
     }
-
-    String hasura_id;
 
 }

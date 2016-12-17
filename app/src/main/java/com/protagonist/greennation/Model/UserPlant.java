@@ -3,23 +3,63 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class UserPlant implements Parcelable {
+    @SuppressWarnings("unused")
+    public static final Parcelable.Creator<UserPlant> CREATOR = new Parcelable.Creator<UserPlant>() {
+        @Override
+        public UserPlant createFromParcel(Parcel in) {
+            return new UserPlant(in);
+        }
+
+        @Override
+        public UserPlant[] newArray(int size) {
+            return new UserPlant[size];
+        }
+    };
     private String id;
-
     private long end_date;
-
     private String plant_pet_name;
-
     private String current_level;
-
     private String prev_level;
-
     private String plant_id;
-
+    private PlantDetail plants;
+    private HyperLocals my_hyper;
     private String hyper_local_garden_id;
-
     private String start_date;
-
     private String hasura_user_id;
+
+
+    public UserPlant(Parcel in) {
+        id = in.readString();
+        end_date = in.readLong();
+        plant_pet_name = in.readString();
+        current_level = in.readString();
+        prev_level = in.readString();
+        plant_id = in.readString();
+        hyper_local_garden_id = in.readString();
+        start_date = in.readString();
+        hasura_user_id = in.readString();
+
+    }
+
+    public static Creator<UserPlant> getCREATOR() {
+        return CREATOR;
+    }
+
+    public PlantDetail getPlants() {
+        return plants;
+    }
+
+    public void setPlants(PlantDetail plantDetail) {
+        this.plants = plantDetail;
+    }
+
+    public HyperLocals getmy_hyper() {
+        return my_hyper;
+    }
+
+    public void setmy_hyper(HyperLocals hyperLocals) {
+        this.my_hyper = hyperLocals;
+    }
 
     public String getId ()
     {
@@ -117,18 +157,6 @@ public class UserPlant implements Parcelable {
         return "UserPlant [id = "+id+", end_date = "+end_date+", plant_pet_name = "+plant_pet_name+", current_level = "+current_level+", prev_level = "+prev_level+", plant_id = "+plant_id+", hyper_local_garden_id = "+hyper_local_garden_id+", start_date = "+start_date+", hasura_user_id = "+hasura_user_id+"]";
     }
 
-     public UserPlant(Parcel in) {
-        id = in.readString();
-        end_date = in.readLong();
-        plant_pet_name = in.readString();
-        current_level = in.readString();
-        prev_level = in.readString();
-        plant_id = in.readString();
-        hyper_local_garden_id = in.readString();
-        start_date = in.readString();
-        hasura_user_id = in.readString();
-    }
-
     @Override
     public int describeContents() {
         return 0;
@@ -146,18 +174,5 @@ public class UserPlant implements Parcelable {
         dest.writeString(start_date);
         dest.writeString(hasura_user_id);
     }
-
-    @SuppressWarnings("unused")
-    public static final Parcelable.Creator<UserPlant> CREATOR = new Parcelable.Creator<UserPlant>() {
-        @Override
-        public UserPlant createFromParcel(Parcel in) {
-            return new UserPlant(in);
-        }
-
-        @Override
-        public UserPlant[] newArray(int size) {
-            return new UserPlant[size];
-        }
-    };
 }
 

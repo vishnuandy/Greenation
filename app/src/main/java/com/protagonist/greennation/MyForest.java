@@ -28,7 +28,6 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 public class MyForest extends AppCompatActivity implements Request_listplants {
-    RecyclerView recyclerView;
     private final String plant_names[] = {
             "Donut",
             "Eclair",
@@ -36,7 +35,6 @@ public class MyForest extends AppCompatActivity implements Request_listplants {
             "Gingerbread",
 
     };
-
     private final String plant_images[] = {
             "http://api.learn2crack.com/android/images/donut.png",
             "http://api.learn2crack.com/android/images/eclair.png",
@@ -44,16 +42,18 @@ public class MyForest extends AppCompatActivity implements Request_listplants {
             "http://api.learn2crack.com/android/images/ginger.png",
 
     };
+    RecyclerView recyclerView;
+
     public void api_user_plant() {
         if (Apputil.checkInternetConnection()) {
+            SessionManager session = new SessionManager();
 
-            Endpoints.urlactionname = "list_my_plants";
+            Endpoints.urlactionname = "list_my_plants?hasura_user_id=" + session.get_hasura_userid();
             //Facebook_hasura_detail facebook_hasuradetail = sessionManager.get_Facebooklogin_hasuradetail();
 
 
             JSONObject params = new JSONObject();
             try {
-                SessionManager session=new SessionManager();
 
                 params.put("hasura_user_id", session.get_hasura_userid());
 
@@ -91,8 +91,8 @@ public class MyForest extends AppCompatActivity implements Request_listplants {
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
-        ArrayList<Plant> androidVersions = prepareData();
-        ForestAdapter adapter = new ForestAdapter(getApplicationContext(), androidVersions);
+        ArrayList<UserPlant> plantlist = new ArrayList<>();
+        ForestAdapter adapter = new ForestAdapter(getApplicationContext(), plantlist);
         recyclerView.setAdapter(adapter);
         api_user_plant();
     }
@@ -136,9 +136,9 @@ public class MyForest extends AppCompatActivity implements Request_listplants {
 
     @Override
     public void oncreate_plantlist(ArrayList<UserPlant> plants) {
-        ArrayList<Plant> androidVersions = prepareData();
-        ForestAdapter adapter = new ForestAdapter(getApplicationContext(), androidVersions);
-        recyclerView.setAdapter(adapter);
-
+        if (plants != null) {
+            ForestAdapter adapter = new ForestAdapter(getApplicationContext(), plants);
+            recyclerView.setAdapter(adapter);
+        }
     }
 }

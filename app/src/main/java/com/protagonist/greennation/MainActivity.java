@@ -1,26 +1,38 @@
 package com.protagonist.greennation;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Toast;
 
+import com.protagonist.greennation.Task.Task_createplant;
+import com.protagonist.greennation.Task.Task_createprofile;
+import com.protagonist.greennation.callbacks.Request_createPlant;
+import com.protagonist.greennation.helper.SessionManager;
+import com.protagonist.greennation.json.Endpoints;
+import com.protagonist.greennation.utils.Apputil;
 import com.yalantis.contextmenu.lib.ContextMenuDialogFragment;
 import com.yalantis.contextmenu.lib.MenuObject;
 import com.yalantis.contextmenu.lib.MenuParams;
 import com.yalantis.contextmenu.lib.interfaces.OnMenuItemClickListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements OnMenuItemClickListener {
+public class MainActivity extends AppCompatActivity implements OnMenuItemClickListener, Request_createPlant {
+    String plant_id = "";
     private ContextMenuDialogFragment mMenuDialogFragment;
     private FragmentManager fragmentManager;
 
@@ -29,13 +41,15 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.plant_growth);
         fragmentManager = getSupportFragmentManager();
-
+        Intent i = getIntent();
+        plant_id = i.getStringExtra("plant_id");
         MenuParams menuParams = new MenuParams();
         menuParams.setActionBarSize((int) getResources().getDimension(R.dimen.tool_bar_height));
         menuParams.setMenuObjects(getMenuObjects());
         menuParams.setClosableOutside(false);
         mMenuDialogFragment = ContextMenuDialogFragment.newInstance(menuParams);
        mMenuDialogFragment.setItemClickListener(this);
+        api_create_myplant();
 //        mMenuDialogFragment.setItemLongClickListener(this);
     }
     private List<MenuObject> getMenuObjects() {
@@ -88,6 +102,29 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         return menuObjects;
     }
 
+    public void api_create_myplant() {
+        if (Apputil.checkInternetConnection()) {
+
+            Endpoints.urlactionname = "create_my_plant";
+            //Facebook_hasura_detail facebook_hasuradetail = sessionManager.get_Facebooklogin_hasuradetail();
+
+
+            JSONObject params = new JSONObject();
+            try {
+                SessionManager session = new SessionManager();
+                params.put("hasura_user_id", session.get_hasura_userid());
+                params.put("plant_id", plant_id);
+                params.put("hyper_local_garden_id", "9999");
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.e("api_create_user: ", params.toString());
+            new Task_createplant(this, params).execute();
+        } else {
+            //  Apputil.No_network_connection(AppTourActivity.this);
+        }
+    }
     @Override
     public boolean onCreateOptionsMenu(final Menu menu) {
         MenuInflater inflater = getMenuInflater();
@@ -127,6 +164,14 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         }
         else if(position==5){
             Toast.makeText(MainActivity.this,""+position,Toast.LENGTH_SHORT).show();
+        }
+    }
+
+    @Override
+    public void oncreate_plant(String plant) {
+        if (plant != null || plant.isEmpty()) {
+            Log.e("plant_result", plant);
+
         }
     }
     /*@Override

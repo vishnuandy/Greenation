@@ -1,6 +1,7 @@
 package com.protagonist.greennation.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -11,17 +12,19 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.protagonist.greennation.MainActivity;
 import com.protagonist.greennation.Model.Plant;
+import com.protagonist.greennation.Model.UserPlant;
 import com.protagonist.greennation.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 public class ForestAdapter extends RecyclerView.Adapter<ForestAdapter.ViewHolder> {
-    private ArrayList<Plant> android;
+    private ArrayList<UserPlant> android;
     private Context context;
 
-    public ForestAdapter(Context context, ArrayList<Plant> android) {
+    public ForestAdapter(Context context, ArrayList<UserPlant> android) {
         this.android = android;
         this.context = context;
     }
@@ -35,9 +38,15 @@ public class ForestAdapter extends RecyclerView.Adapter<ForestAdapter.ViewHolder
     @Override
     public void onBindViewHolder(ForestAdapter.ViewHolder viewHolder, int i) {
 
-        viewHolder.tv_android.setText(android.get(i).getPlant_name());
+        viewHolder.tv_android.setText(android.get(i).getPlants().getPlant_name());
         viewHolder.price.setVisibility(View.GONE);
-        Log.e("android_images", android.get(i).getPlant_image());
+        viewHolder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(context, MainActivity.class);
+                context.startActivity(i);
+            }
+        });
         Picasso.Builder builder = new Picasso.Builder(context);
         builder.listener(new Picasso.Listener() {
             @Override
@@ -46,7 +55,7 @@ public class ForestAdapter extends RecyclerView.Adapter<ForestAdapter.ViewHolder
                 Log.e("loading error", exception.getLocalizedMessage() + "" + exception.getMessage());
             }
         });
-        builder.build().load("http://lohitsascience.weebly.com/uploads/2/2/6/0/22607136/622994_orig.jpg").into(viewHolder.img_android);
+        builder.build().load(android.get(i).getPlants().getPlant_img()).into(viewHolder.img_android);
         // Picasso.with(context).load(android.get(i).getPlant_image()).resize(240, 120).into(viewHolder.img_android);
     }
 
