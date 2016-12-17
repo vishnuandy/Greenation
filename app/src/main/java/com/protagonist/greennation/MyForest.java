@@ -1,29 +1,23 @@
 package com.protagonist.greennation;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.AnimationUtils;
-import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.protagonist.greennation.Adapter.ForestAdapter;
 import com.protagonist.greennation.Model.Plant;
 import com.protagonist.greennation.Model.UserPlant;
-import com.protagonist.greennation.Task.Task_createprofile;
-import com.protagonist.greennation.Task.Task_plantlist;
-import com.protagonist.greennation.callbacks.Request_listplant;
+import com.protagonist.greennation.Task.Task_plantlists;
+import com.protagonist.greennation.callbacks.Request_listplants;
 import com.protagonist.greennation.helper.SessionManager;
 import com.protagonist.greennation.json.Endpoints;
 import com.protagonist.greennation.utils.Apputil;
@@ -32,9 +26,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.logging.Handler;
 
-public class MyForest extends AppCompatActivity implements Request_listplant {
+public class MyForest extends AppCompatActivity implements Request_listplants {
     RecyclerView recyclerView;
     private final String plant_names[] = {
             "Donut",
@@ -68,7 +61,7 @@ public class MyForest extends AppCompatActivity implements Request_listplant {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-            new Task_plantlist(this, params).execute();
+            new Task_plantlists(this, params).execute();
         } else {
             //  Apputil.No_network_connection(AppTourActivity.this);
         }
