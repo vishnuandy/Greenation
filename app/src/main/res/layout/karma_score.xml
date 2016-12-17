@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:background="@color/bg_grey"
+    android:layout_height="match_parent">
+
+
+
+<android.support.v7.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_margin="@dimen/activity_horizontal_margin"
+    android:background="@android:color/white"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+
+
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_marginTop="100dp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:text="Whoa!"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="match_parent"
+        android:textSize="50sp"
+        android:textStyle="bold"
+        android:textAlignment="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:text="99.7"
+        android:gravity="center"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>
+
+
+
+<TextView
+    android:layout_width="match_parent"
+    android:layout_above="@+id/plant"
+    android:textSize="@dimen/l"
+    android:paddingRight="30dp"
+    android:textAlignment="center"
+    android:paddingLeft="30dp"
+    android:text="You still have a chance to karma"
+    android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:textAlignment="center"
+        android:id="@+id/plant"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginTop="50dp"
+        android:textSize="@dimen/m"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:layout_alignParentBottom="true"
+        android:text="I would like to plant"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+</android.support.v7.widget.CardView>
+
+
+</RelativeLayout>

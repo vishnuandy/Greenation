@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:paddingLeft="40dp"
+        android:paddingRight="10dp"
+        android:id="@+id/des_layout"
+        android:layout_marginTop="@dimen/activity_horizontal_margin"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:text="Benifits:"
+            android:textSize="@dimen/m"
+            android:textStyle="bold"
+            android:layout_height="wrap_content" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:text="It will produce 30% of oxygen"
+        android:textSize="@dimen/m"
+        android:padding="@dimen/activity_vertical_margin"
+        android:layout_height="wrap_content" />
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:background="@color/colorPrimary"
+        android:textAlignment="center"
+        android:padding="@dimen/activity_vertical_margin"
+        android:layout_marginLeft="50dp"
+        android:layout_marginRight="50dp"
+        android:textSize="@dimen/l"
+        android:layout_below="@+id/des_layout"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:text="Plant this item"
+        android:textColor="@android:color/white"
+        android:layout_height="wrap_content" />
+
+</RelativeLayout>
