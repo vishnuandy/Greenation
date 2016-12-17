@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">GreenNation</string>
-    <string name="action">perform</string>
+    <string name="action">action</string>
+    <string name="rupee">\u20B9</string>
+    <string name="buy_and_plant_the_seed">Buy and Plant the Seed</string>
+    <string name="badge">badge</string>
+    <string name="hyperlocal">Hyper-Local Garden</string>
+    <string name="uprooted">Uprooted Trees</string>
 </resources>

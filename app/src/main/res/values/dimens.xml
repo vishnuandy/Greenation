@@ -8,6 +8,9 @@
     <dimen name="m">17sp</dimen>
     <dimen name="s">14sp</dimen>
     <dimen name="xs">11sp</dimen>
+    <dimen name="four_dp">4dp</dimen>
+    <dimen name="radio_button_conner_radius">5dp</dimen>
+    <dimen name="radio_button_stroke_border">1dp</dimen>
     <dimen name="tool_bar_height">50sp</dimen>
 
 </resources>

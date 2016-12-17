@@ -1,46 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <LinearLayout
-        android:layout_width="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="40dp"
-        android:paddingRight="10dp"
         android:id="@+id/des_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
-        android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
 
         <TextView
-            android:layout_width="wrap_content"
-            android:text="Benifits:"
-            android:textSize="@dimen/m"
-            android:textStyle="bold"
-            android:layout_height="wrap_content" />
+            android:id="@+id/percent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="@dimen/activity_vertical_margin"
+            android:text="It will produce 30% of oxygen"
+            android:textSize="@dimen/m" />
 
-    <TextView
-        android:layout_width="match_parent"
-        android:text="It will produce 30% of oxygen"
-        android:textSize="@dimen/m"
-        android:padding="@dimen/activity_vertical_margin"
-        android:layout_height="wrap_content" />
     </LinearLayout>
 
-
-    <TextView
+    <com.protagonist.greennation.SegmentedGroup
+        android:id="@+id/SegmentedGroup"
         android:layout_width="match_parent"
-        android:background="@color/colorPrimary"
-        android:textAlignment="center"
-        android:padding="@dimen/activity_vertical_margin"
-        android:layout_marginLeft="50dp"
-        android:layout_marginRight="50dp"
-        android:textSize="@dimen/l"
+        android:layout_height="wrap_content"
         android:layout_below="@+id/des_layout"
-        android:layout_marginTop="50dp"
+        android:layout_margin="@dimen/activity_horizontal_margin"
+        android:layout_weight="2"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/grow_myself"
+            style="@style/RadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.01"
+            android:enabled="true"
+            android:text="Grow Myself" />
+
+        <RadioButton
+            android:id="@+id/help_grow"
+            style="@style/RadioButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:enabled="true"
+            android:text="Grow it for Me" />
+    </com.protagonist.greennation.SegmentedGroup>
+
+    <Button
+        android:id="@+id/buy_seed"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/SegmentedGroup"
+        android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_marginBottom="@dimen/activity_horizontal_margin"
-        android:text="Plant this item"
-        android:textColor="@android:color/white"
-        android:layout_height="wrap_content" />
+        android:background="@color/colorPrimary"
+        android:padding="@dimen/activity_vertical_margin"
+        android:text="@string/buy_and_plant_the_seed"
+        android:textAlignment="center"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@android:color/white" />
 
 </RelativeLayout>

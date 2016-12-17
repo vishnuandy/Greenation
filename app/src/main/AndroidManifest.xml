@@ -9,14 +9,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MyForest">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MyForest"></activity>
+        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".SeedActivity"></activity>
+        <activity android:name=".AccessoriesActivity"></activity>
+
     </application>
 
 </manifest>
