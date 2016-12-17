@@ -3,6 +3,7 @@
     package="com.protagonist.greennation">
 
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,10 +17,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"></activity>
-        <activity android:name=".SeedActivity"></activity>
-        <activity android:name=".AccessoriesActivity"></activity>
-
+        <activity android:name=".MainActivity" />
+        <activity android:name=".SeedActivity" />
+        <activity android:name=".AccessoriesActivity" />
+        <activity android:name=".SignupActivity"></activity>
     </application>
 
 </manifest>
