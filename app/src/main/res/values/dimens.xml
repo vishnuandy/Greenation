@@ -8,5 +8,6 @@
     <dimen name="m">17sp</dimen>
     <dimen name="s">14sp</dimen>
     <dimen name="xs">11sp</dimen>
+    <dimen name="tool_bar_height">50sp</dimen>
 
 </resources>

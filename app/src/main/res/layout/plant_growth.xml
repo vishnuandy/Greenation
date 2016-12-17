@@ -3,7 +3,22 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <pl.droidsonroids.gif.GifTextView
+        android:layout_width="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_height="100dp"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@drawable/watering_gif"
+        />
+    <pl.droidsonroids.gif.GifTextView
+        android:layout_width="200dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:layout_height="100dp"
+        android:background="@drawable/fertilizers_gif"
+        />
+
+    <ImageView
         android:layout_width="match_parent"
         android:layout_alignParentBottom="true"
         android:background="@drawable/soil"
