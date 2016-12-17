@@ -8,6 +8,7 @@ import android.support.v7.app.ActionBarActivity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,12 +20,22 @@ import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
 import com.protagonist.greennation.Adapter.ForestAdapter;
 import com.protagonist.greennation.Model.Plant;
+import com.protagonist.greennation.Model.UserPlant;
+import com.protagonist.greennation.Task.Task_createprofile;
+import com.protagonist.greennation.Task.Task_plantlist;
+import com.protagonist.greennation.callbacks.Request_listplant;
+import com.protagonist.greennation.helper.SessionManager;
+import com.protagonist.greennation.json.Endpoints;
+import com.protagonist.greennation.utils.Apputil;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.logging.Handler;
 
-public class MyForest extends AppCompatActivity {
-
+public class MyForest extends AppCompatActivity implements Request_listplant {
+    RecyclerView recyclerView;
     private final String plant_names[] = {
             "Donut",
             "Eclair",
@@ -40,6 +51,28 @@ public class MyForest extends AppCompatActivity {
             "http://api.learn2crack.com/android/images/ginger.png",
 
     };
+    public void api_user_plant() {
+        if (Apputil.checkInternetConnection()) {
+
+            Endpoints.urlactionname = "list_my_plants";
+            //Facebook_hasura_detail facebook_hasuradetail = sessionManager.get_Facebooklogin_hasuradetail();
+
+
+            JSONObject params = new JSONObject();
+            try {
+                SessionManager session=new SessionManager();
+
+                params.put("hasura_user_id", session.get_hasura_userid());
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            new Task_plantlist(this, params).execute();
+        } else {
+            //  Apputil.No_network_connection(AppTourActivity.this);
+        }
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,24 +94,25 @@ public class MyForest extends AppCompatActivity {
             }
         });
 
-        RecyclerView recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
+        recyclerView = (RecyclerView) findViewById(R.id.card_recycler_view);
         recyclerView.setHasFixedSize(true);
         RecyclerView.LayoutManager layoutManager = new GridLayoutManager(getApplicationContext(), 2);
         recyclerView.setLayoutManager(layoutManager);
         ArrayList<Plant> androidVersions = prepareData();
         ForestAdapter adapter = new ForestAdapter(getApplicationContext(), androidVersions);
         recyclerView.setAdapter(adapter);
+        api_user_plant();
     }
 
     private ArrayList<Plant> prepareData() {
 
         ArrayList<Plant> android_version = new ArrayList<>();
-        for (int i = 0; i < plant_names.length; i++) {
+       /* for (int i = 0; i < plant_names.length; i++) {
             Plant androidVersion = new Plant();
             androidVersion.setPlant_name(plant_names[i]);
             androidVersion.setPlant_image(plant_images[i]);
             android_version.add(androidVersion);
-        }
+        }*/
         return android_version;
     }
 
@@ -105,5 +139,13 @@ public class MyForest extends AppCompatActivity {
             default:
                 return super.onOptionsItemSelected(item);
         }
+    }
+
+    @Override
+    public void oncreate_plantlist(ArrayList<UserPlant> plants) {
+        ArrayList<Plant> androidVersions = prepareData();
+        ForestAdapter adapter = new ForestAdapter(getApplicationContext(), androidVersions);
+        recyclerView.setAdapter(adapter);
+
     }
 }

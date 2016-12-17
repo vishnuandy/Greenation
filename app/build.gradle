@@ -36,6 +36,8 @@ dependencies {
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.clans:fab:1.6.4'
     compile 'com.yalantis:contextmenu:1.0.7'
+    compile 'com.mcxiaoke.volley:library:1.0.+'
+    compile 'com.google.code.gson:gson:2.4'
 
 
     testCompile 'junit:junit:4.12'
