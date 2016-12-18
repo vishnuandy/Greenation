@@ -6,28 +6,36 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
 import com.github.clans.fab.FloatingActionMenu;
+import com.google.gson.Gson;
 import com.protagonist.greennation.Adapter.ForestAdapter;
+import com.protagonist.greennation.Model.LeaderStatus;
 import com.protagonist.greennation.Model.Plant;
 import com.protagonist.greennation.Model.UserPlant;
+import com.protagonist.greennation.Task.Task_createLeaderStatus;
+import com.protagonist.greennation.Task.Task_createplant;
 import com.protagonist.greennation.Task.Task_plantlists;
+import com.protagonist.greennation.callbacks.Request_createLeaderBoard;
 import com.protagonist.greennation.callbacks.Request_listplants;
 import com.protagonist.greennation.helper.SessionManager;
 import com.protagonist.greennation.json.Endpoints;
 import com.protagonist.greennation.utils.Apputil;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class MyForest extends AppCompatActivity implements Request_listplants {
+public class MyForest extends AppCompatActivity implements Request_listplants, Request_createLeaderBoard {
     private final String plant_names[] = {
             "Donut",
             "Eclair",
@@ -44,6 +52,28 @@ public class MyForest extends AppCompatActivity implements Request_listplants {
     };
     RecyclerView recyclerView;
 
+    public void api_check_leaderboard_status() {
+        if (Apputil.checkInternetConnection()) {
+
+            Endpoints.urlactionname = "get_leader_board";
+            //Facebook_hasura_detail facebook_hasuradetail = sessionManager.get_Facebooklogin_hasuradetail();
+
+
+            JSONObject params = new JSONObject();
+            try {
+                SessionManager session = new SessionManager();
+                params.put("hasura_user_id", session.get_hasura_userid());
+
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+            Log.e("api_create_user: ", params.toString());
+            new Task_createLeaderStatus(this, params).execute();
+        } else {
+            //  Apputil.No_network_connection(AppTourActivity.this);
+        }
+    }
     public void api_user_plant() {
         if (Apputil.checkInternetConnection()) {
             SessionManager session = new SessionManager();
@@ -123,10 +153,8 @@ public class MyForest extends AppCompatActivity implements Request_listplants {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.context_menu:
-                final Dialog dialog = new Dialog(this);
-                View myContentsView = getLayoutInflater().inflate(R.layout.impactscore, null);
-                dialog.setContentView(myContentsView);
-                dialog.show();
+                api_check_leaderboard_status();
+
                 return true;
 
             default:
@@ -139,6 +167,35 @@ public class MyForest extends AppCompatActivity implements Request_listplants {
         if (plants != null) {
             ForestAdapter adapter = new ForestAdapter(getApplicationContext(), plants);
             recyclerView.setAdapter(adapter);
+        }
+    }
+
+    @Override
+    public void oncreate_leaderboard(String leaderboard) {
+        if (leaderboard != null || !leaderboard.isEmpty()) {
+            try {
+                //JSONObject categoryobj = new JSONObject(response);
+                JSONArray arrayMovies = new JSONArray(leaderboard);
+                ArrayList<LeaderStatus> interviewlist = new ArrayList<LeaderStatus>();
+                for (int i = 0; i < arrayMovies.length(); i++) {
+                    JSONObject interviewobj = arrayMovies.getJSONObject(i);
+                    Log.e("response value", interviewobj.toString());
+                    Gson gson = new Gson();
+                    LeaderStatus obj = null;
+                    obj = gson.fromJson(interviewobj.toString(), LeaderStatus.class);
+                    interviewlist.add(obj);
+
+                }
+                final Dialog dialog = new Dialog(this);
+                View myContentsView = getLayoutInflater().inflate(R.layout.impactscore, null);
+                TextView badge = (TextView) myContentsView.findViewById(R.id.badge);
+                badge.setText(interviewlist.get(0).getLeaderboard_level_name());
+                dialog.setContentView(myContentsView);
+                dialog.show();
+
+            } catch (JSONException e) {
+            }
+
         }
     }
 }
