@@ -12,16 +12,17 @@ import com.protagonist.greennation.MyApplication;
 
 public class SessionManager {
 
+    private static final String PREF_NAME = "greenation";
+    /* Facebooklogin_hasuradetail */
+    public String KEY_login = "KEY_login";
+    public String LATITUDE = "latitude";
+    public String LONGITUDE = "longitude";
+    public String HASURA_ID = "HASURA_ID" ;
+    public String HASURA_AUTH_TOKEN = "HASURA_AUTH_TOKEN";
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     Context _context;
-    private static final String PREF_NAME = "greenation";
     int PRIVATE_MODE = 0;
-
-    /* Facebooklogin_hasuradetail */
-    public String KEY_login = "KEY_login";
-    public String HASURA_ID = "HASURA_ID" ;
-    public String HASURA_AUTH_TOKEN = "HASURA_AUTH_TOKEN";
 
 
 
@@ -50,8 +51,22 @@ public class SessionManager {
         editor.commit();
     }
 
+    public void create_latlong(double latitude, double longitude) {
+        editor.putBoolean(KEY_login, true);
+        editor.putLong(LATITUDE, (long) latitude);
+        editor.putLong(LONGITUDE, (long) longitude);
+        editor.commit();
+    }
 
+    public long getLatitude() {
+        return pref.getLong(LATITUDE, 0);
 
+    }
+
+    public long getLongitude() {
+        return pref.getLong(LONGITUDE, 0);
+
+    }
     public String get_hasura_auth_token() {
         return pref.getString(HASURA_AUTH_TOKEN,"");
     }

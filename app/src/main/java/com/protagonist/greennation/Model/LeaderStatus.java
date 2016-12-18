@@ -22,10 +22,24 @@ public class LeaderStatus implements Parcelable {
     };
     private String id;
     private String leaderboard_level_name;
+    private String message;
 
     protected LeaderStatus(Parcel in) {
         id = in.readString();
+        message = in.readString();
         leaderboard_level_name = in.readString();
+    }
+
+    public static Creator<LeaderStatus> getCREATOR() {
+        return CREATOR;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getId() {
@@ -58,5 +72,6 @@ public class LeaderStatus implements Parcelable {
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(id);
         dest.writeString(leaderboard_level_name);
+        dest.writeString(message);
     }
 }

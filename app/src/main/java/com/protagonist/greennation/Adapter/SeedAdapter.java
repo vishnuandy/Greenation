@@ -12,15 +12,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.protagonist.greennation.GPSTracker;
 import com.protagonist.greennation.MainActivity;
 import com.protagonist.greennation.Model.Plant;
 import com.protagonist.greennation.Model.Seed;
 import com.protagonist.greennation.R;
 import com.protagonist.greennation.SeedActivity;
+import com.protagonist.greennation.utils.Apputil;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -50,16 +53,35 @@ public class SeedAdapter extends RecyclerView.Adapter<SeedAdapter.ViewHolder> {
                 final Dialog dialog = new Dialog(context);
                 View myContentsView = context.getLayoutInflater().inflate(R.layout.buy_seed, null);
                 Button buy = (Button) myContentsView.findViewById(R.id.buy_seed);
+                TextView description = (TextView) myContentsView.findViewById(R.id.description);
+                description.setText(android.get(i).getDescription());
+                final RadioButton growit_myself = (RadioButton) myContentsView.findViewById(R.id.grow_myself);
+                final RadioButton growit_for_me = (RadioButton) myContentsView.findViewById(R.id.help_grow);
+
                 final String plant_id = android.get(i).getId();
                 buy.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 
-                        Toast.makeText(context, "Thank you for your purchase", Toast.LENGTH_LONG).show();
+                        if (growit_myself.isChecked()) {
 
-                        Intent i = new Intent(context, MainActivity.class);
-                        i.putExtra("plant_id", plant_id);
-                        context.startActivity(i);
+                            Intent i = new Intent(context, MainActivity.class);
+                            context.startActivity(i);
+                            //lat 13.0570374
+                            //long 80.25959319999993
+                            Toast.makeText(context, "Thank you for your purchase", Toast.LENGTH_LONG).show();
+                        } else if (growit_for_me.isChecked()) {
+                            Intent i = new Intent(context, MainActivity.class);
+                            i.putExtra("plant_id", plant_id);
+                            context.startActivity(i);
+                            Toast.makeText(context, "Thank you for your purchase", Toast.LENGTH_LONG).show();
+                        } else {
+                            Toast.makeText(context, "Please select atleast one option ", Toast.LENGTH_LONG).show();
+
+                        }
+
+
+
                     }
                 });
                 dialog.setContentView(myContentsView);

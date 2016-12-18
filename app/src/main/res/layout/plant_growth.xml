@@ -3,34 +3,56 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-    <!--
-        <pl.droidsonroids.gif.GifTextView
-            android:layout_width="200dp"
-            android:layout_alignParentRight="true"
-            android:layout_height="100dp"
-            android:layout_marginRight="@dimen/activity_horizontal_margin"
-            android:background="@drawable/watering_gif"
-            />
-        <pl.droidsonroids.gif.GifTextView
-            android:layout_width="200dp"
-            android:layout_alignParentLeft="true"
-            android:layout_marginLeft="@dimen/activity_horizontal_margin"
-            android:layout_height="100dp"
-            android:background="@drawable/fertilizers_gif"
-            />-->
 
-    <ImageView
+    <Button
+        android:id="@+id/harvest"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="30dp"
+        android:background="@color/colorPrimary"
+        android:text="Harvest"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/s"
+        android:visibility="gone" />
+
+    <pl.droidsonroids.gif.GifTextView
+        android:id="@+id/water_gif"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="@dimen/activity_horizontal_margin"
+        android:background="@drawable/watering_gif"
+        android:gravity="center"
+        android:visibility="gone" />
+
+    <pl.droidsonroids.gif.GifTextView
+        android:id="@+id/fertilizer_gif"
+        android:layout_width="150dp"
+        android:layout_height="100dp"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="@dimen/activity_horizontal_margin"
+        android:background="@drawable/fertilizers_gif"
+        android:visibility="gone" />
+
+
+    <TextView
         android:id="@+id/grass"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="80dp"
         android:layout_alignParentBottom="true"
-        android:background="@drawable/soil" />
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/soil"
+        android:gravity="center_horizontal" />
+
     <ImageView
-    android:layout_width="200dp"
+        android:id="@+id/plant_stage"
+        android:layout_width="200dp"
         android:layout_height="270dp"
-    android:layout_above="@id/grass"
-    android:layout_centerHorizontal="true"
-        android:src="@drawable/three" />
+        android:layout_above="@id/grass"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/one" />
 
 
 </RelativeLayout>

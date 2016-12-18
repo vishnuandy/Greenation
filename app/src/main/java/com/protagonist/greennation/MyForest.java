@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.clans.fab.FloatingActionButton;
@@ -189,10 +190,19 @@ public class MyForest extends AppCompatActivity implements Request_listplants, R
                 final Dialog dialog = new Dialog(this);
                 View myContentsView = getLayoutInflater().inflate(R.layout.impactscore, null);
                 TextView badge = (TextView) myContentsView.findViewById(R.id.badge);
+                ImageView close = (ImageView) myContentsView.findViewById(R.id.close);
+
+                TextView description = (TextView) myContentsView.findViewById(R.id.description);
+                description.setText(interviewlist.get(0).getMessage());
                 badge.setText(interviewlist.get(0).getLeaderboard_level_name());
                 dialog.setContentView(myContentsView);
                 dialog.show();
-
+                close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
             } catch (JSONException e) {
             }
 

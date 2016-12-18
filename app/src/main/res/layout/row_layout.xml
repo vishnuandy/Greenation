@@ -33,11 +33,12 @@
                     android:layout_height="wrap_content"
 
                     android:layout_alignParentRight="true"
-                    android:layout_margin="@dimen/activity_vertical_margin"
+                    android:layout_margin="6dp"
                     android:background="@drawable/rounded_button"
                     android:paddingLeft="@dimen/four_dp"
                     android:paddingRight="@dimen/four_dp"
-                    android:textColor="@android:color/white" />
+                    android:textColor="@android:color/white"
+                    android:textSize="@dimen/s" />
 
                 <RadioButton
                     android:id="@+id/radio_selection"

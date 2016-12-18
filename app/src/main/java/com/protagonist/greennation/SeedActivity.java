@@ -1,9 +1,17 @@
 package com.protagonist.greennation;
 
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Criteria;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.View;
 
 import com.github.clans.fab.FloatingActionMenu;
@@ -31,6 +39,7 @@ public class SeedActivity extends AppCompatActivity implements Request_listseeds
             "Gingerbread",
 
     };
+
     private final String plant_images[] = {
             "http://api.learn2crack.com/android/images/donut.png",
             "http://api.learn2crack.com/android/images/eclair.png",

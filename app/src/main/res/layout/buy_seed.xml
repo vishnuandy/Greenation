@@ -5,30 +5,39 @@
     android:layout_height="wrap_content"
     android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
     <LinearLayout
         android:id="@+id/des_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_above="@+id/SegmentedGroup"
+        android:layout_alignParentTop="true"
         android:layout_marginTop="@dimen/activity_horizontal_margin"
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
 
-
+        <ScrollView
+            android:id="@+id/scrollView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <TextView
-            android:id="@+id/percent"
+            android:id="@+id/description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:gravity="left"
             android:padding="@dimen/activity_vertical_margin"
             android:text="It will produce 30% of oxygen"
             android:textSize="@dimen/m" />
-
+        </ScrollView>
     </LinearLayout>
 
     <com.protagonist.greennation.SegmentedGroup
         android:id="@+id/SegmentedGroup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/des_layout"
+        android:layout_above="@+id/buy_seed"
         android:layout_margin="@dimen/activity_horizontal_margin"
         android:layout_weight="2"
         android:orientation="horizontal">
@@ -56,14 +65,15 @@
         android:id="@+id/buy_seed"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/SegmentedGroup"
+
+        android:layout_alignParentBottom="true"
         android:layout_margin="@dimen/activity_horizontal_margin"
-        android:layout_marginBottom="@dimen/activity_horizontal_margin"
         android:background="@color/colorPrimary"
         android:padding="@dimen/activity_vertical_margin"
         android:text="@string/buy_and_plant_the_seed"
         android:textAlignment="center"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:textColor="@android:color/white" />
+    </RelativeLayout>
 
 </RelativeLayout>
