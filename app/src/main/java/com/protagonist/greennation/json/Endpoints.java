@@ -10,7 +10,7 @@ public class Endpoints {
 
     public static String urlname="https://auth.loggia70.hasura-app.io/";
     public static String hasura_urlname = "https://data.loggia70.hasura-app.io/v1/template/";
-    public static String hasura_urlname_change = "https://data.loggia70.hasura-app.io";
+    public static String hasura_urlname_change = "https://api.loggia70.hasura-app.io/";
     public static String urlactionname="";
     public static String urlFacebookauth="";
 

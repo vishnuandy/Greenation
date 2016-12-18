@@ -113,8 +113,8 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
             try {
                 SessionManager session = new SessionManager();
                 params.put("hasura_user_id", session.get_hasura_userid());
-                params.put("plant_id", plant_id);
-                params.put("hyper_local_garden_id", "9999");
+                params.put("plant_id", Integer.parseInt(plant_id));
+                params.put("hyper_local_garden_id", 9999);
 
             } catch (JSONException e) {
                 e.printStackTrace();
