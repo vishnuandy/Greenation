@@ -4,7 +4,6 @@
 
     <item
         android:id="@+id/context_menu"
-        android:icon="@drawable/ic_settings_icon"
         android:orderInCategory="100"
         android:title="@string/action"
         app:showAsAction="always" />

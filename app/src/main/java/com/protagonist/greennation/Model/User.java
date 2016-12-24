@@ -8,6 +8,15 @@ public class User {
     int hasura_id;
     String auth_token;
 
+    public String getNew_user() {
+        return new_user;
+    }
+
+    public void setNew_user(String new_user) {
+        this.new_user = new_user;
+    }
+
+    String new_user;
     public int getHasura_id() {
         return hasura_id;
     }

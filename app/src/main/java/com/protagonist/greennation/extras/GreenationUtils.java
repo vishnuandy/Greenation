@@ -12,6 +12,7 @@ import com.protagonist.greennation.json.Requestor;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Created by makeshg on 17/12/16.
@@ -30,6 +31,12 @@ public class GreenationUtils {
      Log.e("Is_response","Is_response::: "+response);
      return response;
  }
+    public static String send_google_auth(RequestQueue requestQueue, HashMap<String , String> map) {
+        String response = Requestor.getting_Googleauth(requestQueue, Endpoints.getFacebookauth(), map);
+        Log.e("Is_response","Is_response::: "+response);
+        return response;
+    }
+
 
     public static String send_my_plant(RequestQueue requestQueue, JSONObject map) {
         Log.e("mapvalue", "" + Endpoints.getHasuraRequestUrl());

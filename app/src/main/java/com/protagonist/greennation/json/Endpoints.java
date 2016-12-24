@@ -27,7 +27,7 @@ public class Endpoints {
     }
 
     public static String getFacebookauth() {
-        return  "https://auth.loggia70.hasura-app.io/facebook/authenticate?access_token="+urlFacebookauth;
+        return  "https://auth.loggia70.hasura-app.io/google/authenticate?id_token="+urlFacebookauth;
     }
 
 

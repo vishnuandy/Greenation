@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "232093444901",
+    "project_id": "firebase-greenation"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:232093444901:android:7b5559e79f9fd2e9",
+        "android_client_info": {
+          "package_name": "com.protagonist.greennation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "232093444901-kpl6e4fiomhpqoto2bbdgvtvi5o2n1ka.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.protagonist.greennation",
+            "certificate_hash": "B4772ADC01D16B61FAA8B7A9EB0154941A03DE48"
+          }
+        },
+        {
+          "client_id": "232093444901-r635jrbtgop41j3qq8of4blvi5oibo1q.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhOkCCGjVDNR8hluoqI-mC7Bl9LmGHmbQ"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 1
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

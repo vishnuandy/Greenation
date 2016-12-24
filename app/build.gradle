@@ -1,12 +1,12 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.2"
+    compileSdkVersion 24
+    buildToolsVersion "24.0.2"
     defaultConfig {
         applicationId "com.protagonist.greennation"
         minSdkVersion 15
-        targetSdkVersion 25
+        targetSdkVersion 24
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
@@ -38,6 +38,7 @@ dependencies {
     compile 'com.yalantis:contextmenu:1.0.7'
     compile 'com.mcxiaoke.volley:library:1.0.+'
     compile 'com.google.code.gson:gson:2.4'
+    compile 'com.google.android.gms:play-services-auth:9.2.0'
     compile 'com.google.android.gms:play-services:9.2.0'
     compile 'com.google.android.gms:play-services-location:9.2.0'
     compile 'pl.droidsonroids.gif:android-gif-drawable:1.1.+'

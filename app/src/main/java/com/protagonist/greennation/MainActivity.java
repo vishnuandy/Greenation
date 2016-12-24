@@ -131,6 +131,7 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         MenuObject close = new MenuObject();
         close.setResource(R.drawable.ic_close);
 
+/*
 
         MenuObject send = new MenuObject("Water the plant");
         send.setResource(R.drawable.ic_pot_png);
@@ -147,13 +148,14 @@ public class MainActivity extends AppCompatActivity implements OnMenuItemClickLi
         MenuObject addFav = new MenuObject("Know about your plant");
         addFav.setResource(R.drawable.ic_info_png);
 
+*/
 
 
-        menuObjects.add(close);
+    /*    menuObjects.add(close);
         menuObjects.add(send);
         menuObjects.add(like);
         menuObjects.add(addFr);
-        menuObjects.add(addFav);
+        menuObjects.add(addFav);*/
         return menuObjects;
 
     }
